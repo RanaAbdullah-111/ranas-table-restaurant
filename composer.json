@@ -1,0 +1,7 @@
+{
+    "require": {
+        "phpmailer/phpmailer": "^7.1",
+        "google/apiclient": "*",
+        "google/apiclient-services": "^0.445.0"
+    }
+}

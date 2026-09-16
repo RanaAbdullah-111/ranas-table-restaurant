@@ -1,0 +1,9 @@
+google_config.php
+app password's password
+uploads/
+product_uploads/
+*.sql
+.DS_Store
+Thumbs.db
+.vscode/
+vendor/
