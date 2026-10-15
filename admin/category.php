@@ -13,6 +13,24 @@ $error_msg   = "";
 */
 if(isset($_GET['delete'])){
     $del_id = (int)$_GET['delete'];
+
+    // 1. Fetch category image to delete from uploads/
+    $stmt = $connection->prepare("SELECT category_image FROM category WHERE id = ?");
+    $stmt->bind_param("i", $del_id);
+    $stmt->execute();
+    $res = $stmt->get_result();
+    if($row = $res->fetch_assoc()){
+        $img = $row['category_image'];
+        if(!empty($img)){
+            $cat_path = __DIR__ . "/../uploads/" . $img;
+            if(file_exists($cat_path) && is_file($cat_path)){
+                @unlink($cat_path);
+            }
+        }
+    }
+    $stmt->close();
+
+    // 2. Delete category record
     $del = $connection->prepare("DELETE FROM category WHERE id=?");
     $del->bind_param("i", $del_id);
     if($del->execute()){
@@ -41,7 +59,23 @@ if(isset($_POST['update'])){
 
         if(in_array($ext, $allowed)){
             $newImageName = time() . "_" . $imageName;
+
+            // Fetch old image to delete
+            $old_stmt = $connection->prepare("SELECT category_image FROM category WHERE id = ?");
+            $old_stmt->bind_param("i", $upd_id);
+            $old_stmt->execute();
+            $old_res = $old_stmt->get_result();
+            $old_row = $old_res->fetch_assoc();
+            $old_image = $old_row['category_image'] ?? '';
+            $old_stmt->close();
+
             if(move_uploaded_file($tempName, "../uploads/" . $newImageName)){
+                if(!empty($old_image)){
+                    $old_path = __DIR__ . "/../uploads/" . $old_image;
+                    if(file_exists($old_path) && is_file($old_path)){
+                        @unlink($old_path);
+                    }
+                }
                 $upd = $connection->prepare("UPDATE category SET category_name=?, category_details=?, category_image=? WHERE id=?");
                 $upd->bind_param("sssi", $upd_name, $upd_details, $newImageName, $upd_id);
             } else {

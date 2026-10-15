@@ -30,7 +30,24 @@ if(isset($_POST['submit'])){
             $newImageName = time() . "_" . $imageName;
             $folder       = "../product_uploads/" . $newImageName;
 
+            // Fetch old image filename before update
+            $old_stmt = $connection->prepare("SELECT `product_image` FROM `product` WHERE id = ?");
+            $old_stmt->bind_param("i", $id);
+            $old_stmt->execute();
+            $old_res = $old_stmt->get_result();
+            $old_row = $old_res->fetch_assoc();
+            $old_image = $old_row['product_image'] ?? '';
+            $old_stmt->close();
+
             if(move_uploaded_file($tempName, $folder)){
+                // Delete previous image file from product_uploads
+                if(!empty($old_image)){
+                    $old_path = __DIR__ . "/../product_uploads/" . $old_image;
+                    if(file_exists($old_path) && is_file($old_path)){
+                        @unlink($old_path);
+                    }
+                }
+
                 $stmt = $connection->prepare("UPDATE `product` SET `category_id`=?, `product_name`=?, `product_details`=?, `product_price`=?, `product_image`=? WHERE id=?");
                 $stmt->bind_param("issssi", $category_id, $product_name, $product_details, $product_price, $newImageName, $id);
                 if($stmt->execute()){
