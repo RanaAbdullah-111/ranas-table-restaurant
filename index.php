@@ -49,8 +49,8 @@ $avg_rating = "4.9";
 */
 $is_logged_in = isset($_SESSION['user']);
 $order_link   = $is_logged_in ? "user/orders.php"  : "login.php";
-$account_link = $is_logged_in ? "user/my_orders.php": "user.php";
-$account_label= $is_logged_in ? "user/My Orders"    : "Create Account";
+$account_link = $is_logged_in ? "user/my_orders.php": "register.php";
+$account_label= $is_logged_in ? "My Orders"         : "Create Account";
 
 // Category icon map (emoji fallback if no image)
 $cat_icons = ['🍚','🍖','🫕','🍞','🍮','🥛','🥩','🍲','🍢','🎂'];
@@ -473,7 +473,7 @@ footer{background:rgba(6,2,0,.98);border-top:0.5px solid rgba(201,168,76,.1);pad
     <?php else: ?>
     <p class="cta-sub">Sign up in seconds and have Karachi's finest food at your door in under 30 minutes.</p>
     <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap">
-      <a href="user.php"  class="btn-primary">Create Account</a>
+      <a href="register.php" class="btn-primary">Create Account</a>
       <a href="login.php" class="btn-outline">Sign In</a>
     </div>
     <?php endif; ?>
@@ -513,7 +513,7 @@ footer{background:rgba(6,2,0,.98);border-top:0.5px solid rgba(201,168,76,.1);pad
       <a href="logout.php">Sign Out</a>
       <?php else: ?>
       <a href="login.php">Sign In</a>
-      <a href="user.php">Register</a>
+      <a href="register.php">Register</a>
       <a href="forgot.php">Forgot Password</a>
       <?php endif; ?>
     </div>

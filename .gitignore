@@ -1,8 +1,10 @@
+.env
 google_config.php
 app password's password
 uploads/
 product_uploads/
 *.sql
+*.zip
 .DS_Store
 Thumbs.db
 .vscode/

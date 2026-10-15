@@ -169,7 +169,7 @@ if(!empty($_SESSION['user_id']) && isset($connection) && $connection){
     <span class="rn-dr-sec">Navigation</span>
     <a href="<?php echo $_base_root; ?>index.php" class="rn-dr-lk <?php echo $_nav_page==='index.php' ?'on':''; ?>"><i class="bi bi-house-fill"></i> Home</a>
     <a href="<?php echo $_base_user; ?>orders.php" class="rn-dr-lk <?php echo $_nav_page==='orders.php' ?'on':''; ?>"><i class="bi bi-grid-fill"></i> Menu</a>
-    <a href="<?php echo $_base_user; ?>card.php" class="rn-dr-lk <?php echo $_nav_page==='card.php' ?'on':''; ?>">
+    <a href="<?php echo $_base_user; ?>cart.php" class="rn-dr-lk <?php echo ($_nav_page==='cart.php'||$_nav_page==='card.php') ?'on':''; ?>">
         <i class="bi bi-cart3"></i> My Cart
         <?php if($_nav_cart > 0): ?><span class="rn-bd"><?php echo $_nav_cart; ?></span><?php endif; ?>
     </a>
@@ -188,7 +188,7 @@ if(!empty($_SESSION['user_id']) && isset($connection) && $connection){
     <a href="<?php echo $_base_root; ?>logout.php" class="rn-dr-lk red"><i class="bi bi-box-arrow-left"></i> Sign Out</a>
     <?php else: ?>
     <a href="<?php echo $_base_root; ?>login.php" class="rn-dr-lk"><i class="bi bi-box-arrow-in-right"></i> Sign In</a>
-    <a href="<?php echo $_base_root; ?>user.php" class="rn-dr-lk"><i class="bi bi-person-plus-fill"></i> Register</a>
+    <a href="<?php echo $_base_root; ?>register.php" class="rn-dr-lk"><i class="bi bi-person-plus-fill"></i> Register</a>
     <?php endif; ?>
 
     <div class="rn-dr-ft">© <?php echo date('Y'); ?> Rana's Table</div>
@@ -207,7 +207,7 @@ if(!empty($_SESSION['user_id']) && isset($connection) && $connection){
         <a href="<?php echo $_base_root; ?>index.php" class="<?php echo $_nav_page==='index.php' ?'on':''; ?>">Home</a>
         <a href="<?php echo $_base_user; ?>orders.php" class="<?php echo $_nav_page==='orders.php' ?'on':''; ?>">Menu</a>
         <a href="<?php echo $_base_user; ?>my_orders.php" class="<?php echo $_nav_page==='my_orders.php' ?'on':''; ?>">My Orders</a>
-        <a href="<?php echo $_base_user; ?>card.php" class="<?php echo $_nav_page==='card.php' ?'on':''; ?>">Cart</a>
+        <a href="<?php echo $_base_user; ?>cart.php" class="<?php echo ($_nav_page==='cart.php'||$_nav_page==='card.php') ?'on':''; ?>">Cart</a>
         <a href="<?php echo $_base_user; ?>profile.php" class="<?php echo $_nav_page==='profile.php' ?'on':''; ?>">Profile</a>
         <?php if($_nav_role === 'admin'): ?>
         <a href="<?php echo $_base_root; ?>admin/dashboard.php" style="color:var(--gold)">Admin</a>
@@ -218,7 +218,7 @@ if(!empty($_SESSION['user_id']) && isset($connection) && $connection){
     <div class="rn-right">
         <?php if($_nav_logged): ?>
 
-        <a href="<?php echo $_base_user; ?>card.php" class="rn-cart" title="Cart">
+        <a href="<?php echo $_base_user; ?>cart.php" class="rn-cart" title="Cart">
             <i class="bi bi-cart3"></i>
             <?php if($_nav_cart > 0): ?><span class="rn-badge"><?php echo $_nav_cart > 99 ? '99+' : $_nav_cart; ?></span><?php endif; ?>
         </a>
@@ -237,7 +237,7 @@ if(!empty($_SESSION['user_id']) && isset($connection) && $connection){
                 <a href="<?php echo $_base_root; ?>index.php" class="rn-di"><i class="bi bi-house-fill"></i> Home</a>
                 <a href="<?php echo $_base_user; ?>orders.php" class="rn-di"><i class="bi bi-grid-fill"></i> Menu</a>
                 <a href="<?php echo $_base_user; ?>my_orders.php" class="rn-di"><i class="bi bi-bag-check-fill"></i> My Orders</a>
-                <a href="<?php echo $_base_user; ?>card.php" class="rn-di"><i class="bi bi-cart3"></i> My Cart</a>
+                <a href="<?php echo $_base_user; ?>cart.php" class="rn-di"><i class="bi bi-cart3"></i> My Cart</a>
                 <a href="<?php echo $_base_user; ?>profile.php" class="rn-di"><i class="bi bi-person-fill"></i> Profile</a>
                 <?php if($_nav_role === 'admin'): ?>
                 <a href="<?php echo $_base_root; ?>admin/dashboard.php" class="rn-di" style="color:var(--gold)"><i class="bi bi-speedometer2"></i> Admin Panel</a>
@@ -249,7 +249,7 @@ if(!empty($_SESSION['user_id']) && isset($connection) && $connection){
 
         <?php else: ?>
         <a href="<?php echo $_base_root; ?>login.php" class="rn-btn">Sign In</a>
-        <a href="<?php echo $_base_root; ?>user.php" class="rn-btn g">Register</a>
+        <a href="<?php echo $_base_root; ?>register.php" class="rn-btn g">Register</a>
         <?php endif; ?>
     </div>
 </nav>
