@@ -235,6 +235,8 @@ if($result_categories) while($c = mysqli_fetch_assoc($result_categories)) $categ
 <!-- NAV -->
 <?php require("admin_navbar.php"); ?>
 
+<div class="adm-main">
+
 <!-- HERO -->
 <div class="hero">
     <div class="hero-tag">Admin Panel &nbsp;·&nbsp; Rana's Table</div>
@@ -340,6 +342,8 @@ if($result_categories) while($c = mysqli_fetch_assoc($result_categories)) $categ
     <div class="f-brand">Rana's Table</div>
     <div class="f-note">© <?php echo date('Y'); ?> Rana's Table &nbsp;·&nbsp; Admin Panel</div>
 </footer>
+
+</div><!-- /.adm-main -->
 
 <script>
 /* Embers */

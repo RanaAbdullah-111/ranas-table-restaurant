@@ -362,6 +362,7 @@ if($cnt_res) while($cr=mysqli_fetch_assoc($cnt_res)){
 <!-- NAV -->
 <?php require("admin_navbar.php"); ?>
 
+<div class="adm-main">
 <!-- HERO -->
 <div class="hero">
     <div class="hero-tag">Admin Panel &nbsp;·&nbsp; Rana's Table</div>
@@ -550,6 +551,7 @@ if($cnt_res) while($cr=mysqli_fetch_assoc($cnt_res)){
     <div class="f-brand">Rana's Table</div>
     <div class="f-note">© <?php echo date('Y'); ?> Rana's Table &nbsp;·&nbsp; Admin Panel</div>
 </footer>
+</div><!-- .adm-main -->
 
 <script>
 /* Embers */

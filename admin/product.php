@@ -270,7 +270,7 @@ if($prod_result) while($r = mysqli_fetch_assoc($prod_result)) $products[] = $r;
 <!-- NAV -->
 <?php require("admin_navbar.php"); ?>
 
-
+<div class="adm-main">
 <!-- HERO -->
 <div class="hero">
     <div class="hero-tag">Admin Panel &nbsp;·&nbsp; Rana's Table</div>
@@ -433,6 +433,7 @@ if($prod_result) while($r = mysqli_fetch_assoc($prod_result)) $products[] = $r;
     <div class="f-brand">Rana's Table</div>
     <div class="f-note">© <?php echo date('Y'); ?> Rana's Table &nbsp;·&nbsp; Admin Panel</div>
 </footer>
+</div><!-- .adm-main -->
 
 <script>
 /* Embers */

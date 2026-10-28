@@ -2,18 +2,10 @@
 // Get current page for active link highlighting
 $current_page = basename($_SERVER['PHP_SELF']);
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
-    <style>
-        /* ══════════════════════════════════════
-           ADMIN NAVBAR — Rana's Table
-        ══════════════════════════════════════ */
+<style>
+    /* ══════════════════════════════════════
+       ADMIN NAVBAR & LAYOUT — Rana's Table
+    ══════════════════════════════════════ */
 
         :root {
             --gold:        #C9A84C;
@@ -359,9 +351,28 @@ $current_page = basename($_SERVER['PHP_SELF']);
         @media(max-width:560px){
             .adm-nav-btn:not(.gold) { display: none; }
         }
+
+        /* ── GLOBAL ADMIN LAYOUT WRAPPER ── */
+        .adm-main, .dash-main, .page-wrap {
+            margin-left: var(--sidebar-w);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            transition: margin-left 0.4s cubic-bezier(0.16,1,0.3,1);
+            position: relative;
+            z-index: 1;
+        }
+        body.sidebar-collapsed .adm-main,
+        body.sidebar-collapsed .dash-main,
+        body.sidebar-collapsed .page-wrap {
+            margin-left: 0 !important;
+        }
+        @media(max-width:900px){
+            .adm-main, .dash-main, .page-wrap {
+                margin-left: 0 !important;
+            }
+        }
     </style>
-</head>
-<body>
 
 <!-- ══════════════════════════════
      MOBILE OVERLAY
@@ -438,7 +449,7 @@ $current_page = basename($_SERVER['PHP_SELF']);
         </a>
 
         <div class="sb-divider"></div>
-        <a href="../user/logout.php" class="sb-link danger">
+        <a href="../logout.php" class="sb-link danger">
             <i class="bi bi-box-arrow-left"></i> Sign Out
         </a>
 
@@ -541,6 +552,7 @@ function admToggleSidebar(){
         const collapsed = sb.classList.toggle('collapsed');
         nav.classList.toggle('full', collapsed);
         hbg.classList.toggle('active', collapsed);
+        document.body.classList.toggle('sidebar-collapsed', collapsed);
         localStorage.setItem('admSidebarCollapsed', collapsed ? '1' : '0');
     }
 }
@@ -555,6 +567,9 @@ window.addEventListener('DOMContentLoaded',()=>{
     if(window.innerWidth > 900 && localStorage.getItem('admSidebarCollapsed') === '1'){
         document.getElementById('admSidebar').classList.add('collapsed');
         document.getElementById('admTopNav').classList.add('full');
+        document.body.classList.add('sidebar-collapsed');
+        const hbg = document.getElementById('admHamburger');
+        if(hbg) hbg.classList.add('active');
     }
 });
 
@@ -590,5 +605,3 @@ document.addEventListener('keydown', e=>{
     }
 });
 </script>
-</body>
-</html>

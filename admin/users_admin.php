@@ -143,7 +143,7 @@ body{
 .table-head-title{font-family:'Playfair Display',serif;font-size:18px;color:var(--cream)}
 .table-count{font-size:12px;color:var(--cream-dim)}
 
-.users-table{width:100%;border-collapse:collapse}
+.users-table{width:100%;border-collapse:collapse;min-width:680px}
 .users-table th{
     font-size:9px;letter-spacing:3px;text-transform:uppercase;
     color:rgba(201,168,76,0.38);font-weight:500;
@@ -334,6 +334,7 @@ footer{position:relative;z-index:1;border-top:0.5px solid rgba(201,168,76,0.08);
         </div>
 
         <?php if(!empty($users)): ?>
+        <div style="overflow-x:auto;">
         <table class="users-table" id="usersTable">
             <thead>
                 <tr>
@@ -400,6 +401,7 @@ footer{position:relative;z-index:1;border-top:0.5px solid rgba(201,168,76,0.08);
             <?php endforeach; ?>
             </tbody>
         </table>
+        </div>
         <?php else: ?>
         <div class="empty-state">
             <i class="bi bi-people"></i>

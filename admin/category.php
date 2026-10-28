@@ -422,16 +422,17 @@ if($cats_result) while($r = mysqli_fetch_assoc($cats_result)) $categories[] = $r
 <!-- NAV -->
 <?php require("admin_navbar.php"); ?>
 
-<!-- HERO -->
-<div class="hero">
-    <div class="hero-tag">Admin Panel &nbsp;·&nbsp; Rana's Table</div>
-    <h1 class="hero-title">Manage Categories</h1>
-    <p class="hero-sub">Add, edit and delete your menu categories.</p>
-    <div class="hero-divider"><div class="hdl"></div><div class="hdg"></div><div class="hdl"></div></div>
-</div>
+<div class="adm-main">
+    <!-- HERO -->
+    <div class="hero">
+        <div class="hero-tag">Admin Panel &nbsp;·&nbsp; Rana's Table</div>
+        <h1 class="hero-title">Manage Categories</h1>
+        <p class="hero-sub">Add, edit and delete your menu categories.</p>
+        <div class="hero-divider"><div class="hdl"></div><div class="hdg"></div><div class="hdl"></div></div>
+    </div>
 
-<div class="page">
-<div class="main-layout">
+    <div class="page">
+    <div class="main-layout">
 
     <!-- ADD FORM -->
     <div class="form-card">
@@ -538,6 +539,7 @@ if($cats_result) while($r = mysqli_fetch_assoc($cats_result)) $categories[] = $r
     <div class="f-brand">Rana's Table</div>
     <div class="f-note">© <?php echo date('Y'); ?> Rana's Table &nbsp;·&nbsp; Admin Panel</div>
 </footer>
+</div><!-- .adm-main -->
 
 <script>
 /* Embers */
